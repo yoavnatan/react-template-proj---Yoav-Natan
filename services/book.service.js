@@ -14,17 +14,18 @@ export const bookService = {
     getNextbookId,
     getFilterBy,
     setFilterBy,
+    getDefaultFilter
 }
 
-function query() {
+function query(filterBy = {}) {
     return storageService.query(book_KEY)
         .then(books => {
-            if (gFilterBy.txt) {
-                const regex = new RegExp(gFilterBy.txt, 'i')
-                books = books.filter(book => regex.test(book.vendor))
+            if (filterBy.title) {
+                const regex = new RegExp(filterBy.title, 'i')
+                books = books.filter(book => regex.test(book.title))
             }
             if (gFilterBy.minPrice) {
-                books = books.filter(book => book.maxSpeed >= gFilterBy.minPrice)
+                books = books.filter(book => book.pageCount >= filterBy.pageCount)
             }
             return books
         })
@@ -67,6 +68,10 @@ function getNextbookId(bookId) {
             if (nextbookIdx === books.length) nextbookIdx = 0
             return books[nextbookIdx].id
         })
+}
+
+function getDefaultFilter() {
+    return { title: '', minPageCount: '' }
 }
 
 function _createBooks() {
