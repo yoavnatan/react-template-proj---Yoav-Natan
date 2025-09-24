@@ -2,8 +2,7 @@
   box-sizing: border-box;
 }
 
-html {
-}
+html {}
 
 body {
   margin: 0;
@@ -42,4 +41,8 @@ object {
 /* Simple and useful CSS Debugging Technique */
 .debug * {
   outline: 1px solid gold
+}
+
+ul {
+  list-style-type: none;
 }

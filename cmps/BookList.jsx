@@ -1,7 +1,7 @@
 import { BookPreview } from './BookPreview.jsx'
 const { useState, useEffect } = React
 
-export function BookList({ books }) {
+export function BookList({ books, onRemoveBook, onSelectedBookId }) {
 
     console.log(books)
     return (
