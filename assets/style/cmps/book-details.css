@@ -1,0 +1,14 @@
+.book-details .expensive {
+    color: red
+}
+
+.book-details .cheap {
+    color: green
+}
+
+img.on-sale {
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    rotate: 10deg;
+}

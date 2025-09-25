@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const book_KEY = 'bookDB'
-var gFilterBy = { txt: '', minPrice: 0 }
+var gFilterBy = { title: '', minPageCount: 0 }
 _createBooks()
 
 export const bookService = {
@@ -24,8 +24,8 @@ function query(filterBy = {}) {
                 const regex = new RegExp(filterBy.title, 'i')
                 books = books.filter(book => regex.test(book.title))
             }
-            if (gFilterBy.minPrice) {
-                books = books.filter(book => book.pageCount >= filterBy.pageCount)
+            if (filterBy.minPrice) {
+                books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
             }
             return books
         })
@@ -71,7 +71,7 @@ function getNextbookId(bookId) {
 }
 
 function getDefaultFilter() {
-    return { title: '', minPageCount: '' }
+    return { title: '', minPrice: '' }
 }
 
 function _createBooks() {
@@ -97,7 +97,8 @@ function _createBooks() {
                 listPrice: {
                     amount: utilService.getRandomIntInclusive(80, 500),
                     currencyCode: "EUR",
-                    isOnSale: Math.random() > 0.7
+                    // isOnSale: Math.random() > 0.7
+                    isOnSale: true
                 }
             }
             books.push(book)
