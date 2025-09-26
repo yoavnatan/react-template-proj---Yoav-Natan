@@ -1,4 +1,5 @@
 import { bookDetails, bookService } from "../services/book.service.js"
+import { LongTxt } from "../cmps/LongTxt.jsx"
 
 const { useState, useEffect } = React
 
@@ -20,7 +21,6 @@ export function BookDetails({ bookId, onBack }) {
     if (!book) return <div>Loading Details...</div>
     const { title, subtitle, description, pageCount, authors, thumbnail, publishedDate, listPrice } = book
     const { amount, isOnSale } = listPrice
-    console.log(isOnSale)
     const date = new Date()
     let priceClass = ''
     if (amount > 150) priceClass = 'expensive'
@@ -35,7 +35,7 @@ export function BookDetails({ bookId, onBack }) {
             <h1>Book Title: {title}</h1>
             <h2>Subtitle: {subtitle}</h2>
             <h3>author: {authors}</h3>
-            <p>description: {description}</p>
+            <p>description:</p> <LongTxt txt={description} />
             <h4>pageCount: {pageCount}</h4>
             <h5 className={priceClass}>$ {amount}</h5>
             {pageCount > 200 && pageCount <= 500 && <h3>Descent Reading</h3>}
