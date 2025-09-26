@@ -1,0 +1,23 @@
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 1rem;
+}
+
+.book-list li {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+    /* gap: 1rem; */
+    background-color: var(--clr1bg);
+    border-radius: .5em;
+    padding: .3em .8em
+}
+
+.book-preview {
+    display: grid;
+    /* height: 480px; */
+    /* grid-template-rows: 80px 50px 1fr; */
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+}

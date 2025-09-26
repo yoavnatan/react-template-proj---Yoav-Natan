@@ -28,19 +28,19 @@ export function BookDetails({ bookId, onBack }) {
     return (
         <section className="book-details container">
             {pageCount > 500 && <h1>Serious Reading</h1>}
-            {pageCount > 200 && pageCount <= 500 && <h1>Descent Reading</h1>}
             {pageCount < 100 && <h1>light Reading</h1>}
             {date.getFullYear() - publishedDate > 10 && <h1>Vintage</h1>}
             {date.getFullYear() - publishedDate < 1 && <h1>New</h1>}
             {isOnSale && <img className='on-sale' src="../assets/img/onsale.png" />}
             <h1>Book Title: {title}</h1>
-            <h1>Subtitle: {subtitle}</h1>
-            <h1>author: {authors}</h1>
-            <h1>description: {description}</h1>
-            <h1>pageCount: {pageCount}</h1>
-            <h1 className={priceClass}>$ {amount}</h1>
+            <h2>Subtitle: {subtitle}</h2>
+            <h3>author: {authors}</h3>
+            <p>description: {description}</p>
+            <h4>pageCount: {pageCount}</h4>
+            <h5 className={priceClass}>$ {amount}</h5>
+            {pageCount > 200 && pageCount <= 500 && <h3>Descent Reading</h3>}
             <img src={thumbnail} alt="Book Image" />
-            <button onClick={onBack}>Back</button>
+            <button className="btn-back" onClick={onBack}>Back</button>
         </section>
     )
 }

@@ -8,7 +8,14 @@
 
 img.on-sale {
     position: absolute;
-    top: 150px;
+    top: 110px;
     right: 20px;
     rotate: 10deg;
+    z-index: -1;
+}
+
+.book-details .btn-back {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }

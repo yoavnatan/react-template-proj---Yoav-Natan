@@ -9,3 +9,11 @@
     color: var(--clr2bg);
   }
 }
+
+.app-header .app-nav {
+  display: flex;
+  gap: 20px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
