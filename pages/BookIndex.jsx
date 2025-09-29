@@ -37,7 +37,6 @@ export function BookIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))
     }
 
-
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index">

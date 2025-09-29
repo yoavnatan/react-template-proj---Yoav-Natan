@@ -31,8 +31,7 @@ export function BookFilter({ defaultFilter, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { title, minPrice } = filterByToEdit
-
+    const { title, minPrice, minPageCount = 100 } = filterByToEdit
     const isValid = title && minPrice
 
     return (
@@ -43,6 +42,9 @@ export function BookFilter({ defaultFilter, onSetFilterBy }) {
 
                 <label htmlFor="minPrice">Min Price</label>
                 <input onChange={handleChange} value={minPrice || ''} name="minPrice" id="minPrice" type="number" />
+
+                <label htmlFor="minPageCount">{minPageCount}Pages</label>
+                <input onChange={handleChange} value={minPageCount} name="minPageCount" id="minPageCount" type="range" min="50" max="600" />
                 <button disabled={!isValid}>Submit</button>
             </form>
         </section>

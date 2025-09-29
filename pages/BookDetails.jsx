@@ -23,8 +23,7 @@ export function BookDetails({ bookId, onBack }) {
     const { amount, isOnSale } = listPrice
     const date = new Date()
     let priceClass = ''
-    if (amount > 150) priceClass = 'expensive'
-    else if (amount < 20) priceClass = 'cheap'
+
     return (
         <section className="book-details container">
             {pageCount > 500 && <h1>Serious Reading</h1>}
@@ -37,7 +36,7 @@ export function BookDetails({ bookId, onBack }) {
             <h3>author: {authors}</h3>
             <p>description:</p> <LongTxt txt={description} />
             <h4>pageCount: {pageCount}</h4>
-            <h5 className={priceClass}>$ {amount}</h5>
+            <h5 className={amount > 150 ? 'expensive' : 'cheap'}>$ {amount}</h5>
             {pageCount > 200 && pageCount <= 500 && <h3>Descent Reading</h3>}
             <img src={thumbnail} alt="Book Image" />
             <button className="btn-back" onClick={onBack}>Back</button>

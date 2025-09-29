@@ -27,6 +27,9 @@ function query(filterBy = {}) {
             if (filterBy.minPrice) {
                 books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
             }
+            if (filterBy.minPageCount) {
+                books = books.filter(book => book.pageCount >= filterBy.minPageCount)
+            }
             return books
         })
 }
@@ -71,7 +74,7 @@ function getNextbookId(bookId) {
 }
 
 function getDefaultFilter() {
-    return { title: '', minPrice: '' }
+    return { title: '', minPrice: '', minPageCount: 100 }
 }
 
 function _createBooks() {
