@@ -10,7 +10,6 @@ const { useState, useEffect } = React
 export function BookIndex() {
 
     const [books, setBooks] = useState(null)
-    const [selectedBookId, setSelectedBookId] = useState(null)
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
     useEffect(() => {
@@ -31,9 +30,6 @@ export function BookIndex() {
             .catch(err => console.log('err', err))
     }
 
-    function onSelectedBookId(bookId) {
-        setSelectedBookId(bookId)
-    }
 
     function onSetFilterBy(newFilterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...newFilterBy }))

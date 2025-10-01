@@ -50,8 +50,14 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', amount = 100) {
-    return { title: '', listPrice: { amount }, pageCount: '' }
+function getEmptyBook(title = '', amount = '', pageCount = 100) {
+    return {
+        title,
+        listPrice: {
+            amount
+        },
+        pageCount
+    }
 }
 
 function getFilterBy() {

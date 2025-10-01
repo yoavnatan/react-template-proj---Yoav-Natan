@@ -42,7 +42,9 @@ export function BookEdit() {
                 value = target.checked
                 break
         }
-        setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
+        console.log(bookToEdit)
+        if (field === 'amount') setBookToEdit(prevBook => ({ ...prevBook, listPrice: { ...prevBook.listPrice, [field]: value } }))
+        else setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
     }
 
     function onSaveBook(ev) {
@@ -66,8 +68,8 @@ export function BookEdit() {
                 <label htmlFor="title">Title</label>
                 <input value={title} onChange={handleChange} type="text" name="title" id="title" />
 
-                <label htmlFor="price">Price</label>
-                <input value={listPrice.amount} onChange={handleChange} type="number" name="price" id="price" />
+                <label htmlFor="amount">Price</label>
+                <input value={listPrice.amount} onChange={handleChange} type="number" name="amount" id="price" />
                 <button disabled={!title}>Save</button>
             </form>
         </section>
