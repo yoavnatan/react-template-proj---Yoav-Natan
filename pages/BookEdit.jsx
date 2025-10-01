@@ -50,7 +50,10 @@ export function BookEdit() {
     function onSaveBook(ev) {
         ev.preventDefault()
         bookService.save(bookToEdit)
-            .then(() => navigate('/book'))
+            .then(() => {
+                showSuccessMsg('Book saved successfully!')
+                navigate('/book')
+            })
             .catch(err => {
                 console.log('err:', err)
                 navigate('/book')
