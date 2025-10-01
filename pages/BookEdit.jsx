@@ -13,17 +13,17 @@ export function BookEdit() {
     const { bookId } = useParams()
 
     useEffect(() => {
-        if (bookId) loadCar()
+        if (bookId) loadBook()
     }, [])
 
 
-    function loadCar() {
+    function loadBook() {
         setIsLoading(true)
-        carService.get(carId)
-            .then(car => setCarToEdit(car))
+        bookService.get(bookId)
+            .then(book => setBookToEdit(book))
             .catch(err => {
                 console.log('err:', err)
-                navigate('/car')
+                navigate('/book')
             })
             .finally(() => setIsLoading(false))
     }
@@ -42,33 +42,33 @@ export function BookEdit() {
                 value = target.checked
                 break
         }
-        setCarToEdit(prevCar => ({ ...prevCar, [field]: value }))
+        setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
     }
 
-    function onSaveCar(ev) {
+    function onSaveBook(ev) {
         ev.preventDefault()
-        carService.save(carToEdit)
-            .then(() => navigate('/car'))
+        bookService.save(bookToEdit)
+            .then(() => navigate('/book'))
             .catch(err => {
                 console.log('err:', err)
-                navigate('/car')
-                showErrorMsg('Cannot save car')
+                navigate('/book')
+                showErrorMsg('Cannot save book')
             })
     }
 
 
     const loadingClass = isLoading ? 'loading' : ''
-    const { vendor, speed } = carToEdit
+    const { title, listPrice } = bookToEdit
     return (
-        <section className="car-edit">
-            <h1>{carId ? 'Edit' : 'Add'} Car</h1>
-            <form className={loadingClass} onSubmit={onSaveCar}>
-                <label htmlFor="vendor">Vendor</label>
-                <input value={vendor} onChange={handleChange} type="text" name="vendor" id="vendor" />
+        <section className="book-edit">
+            <h1>{bookId ? 'Edit' : 'Add'} Book</h1>
+            <form className={loadingClass} onSubmit={onSaveBook}>
+                <label htmlFor="title">Title</label>
+                <input value={title} onChange={handleChange} type="text" name="title" id="title" />
 
-                <label htmlFor="speed">Speed</label>
-                <input value={speed} onChange={handleChange} type="number" name="speed" id="speed" />
-                <button disabled={!vendor}>Save</button>
+                <label htmlFor="price">Price</label>
+                <input value={listPrice.amount} onChange={handleChange} type="number" name="price" id="price" />
+                <button disabled={!title}>Save</button>
             </form>
         </section>
     )

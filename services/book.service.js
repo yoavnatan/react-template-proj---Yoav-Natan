@@ -10,7 +10,7 @@ export const bookService = {
     get,
     remove,
     save,
-    getEmptybook,
+    getEmptyBook,
     getNextbookId,
     getFilterBy,
     setFilterBy,
@@ -50,7 +50,7 @@ function save(book) {
     }
 }
 
-function getEmptybook(title = '', amount = 100) {
+function getEmptyBook(title = '', amount = 100) {
     return { title: '', listPrice: { amount }, pageCount: '' }
 }
 
