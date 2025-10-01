@@ -50,8 +50,8 @@ function save(book) {
     }
 }
 
-function getEmptybook(vendor = '', maxSpeed = 0) {
-    return { id: '', vendor, maxSpeed }
+function getEmptybook(title = '', amount = 100) {
+    return { title: '', listPrice: { amount }, pageCount: '' }
 }
 
 function getFilterBy() {

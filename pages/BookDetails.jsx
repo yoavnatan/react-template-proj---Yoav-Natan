@@ -1,22 +1,29 @@
-import { bookDetails, bookService } from "../services/book.service.js"
+import { bookService } from "../services/book.service.js"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 
 const { useState, useEffect } = React
+const { useParams, useNavigate, Link } = ReactRouterDOM
+
 
 export function BookDetails({ bookId, onBack }) {
 
     const [book, setBook] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadBook()
-    }, [])
+    }, [params.bookId])
 
     function loadBook() {
-        bookService.get(bookId)
+        bookService.get(params.bookId)
             .then(book => setBook(book))
             .catch(err => console.log('err:', err))
     }
 
+    function onBack() {
+        navigate('/book')
+    }
 
     if (!book) return <div>Loading Details...</div>
     const { title, subtitle, description, pageCount, authors, thumbnail, publishedDate, listPrice } = book
