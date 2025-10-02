@@ -1,5 +1,6 @@
 import { bookService } from "../services/book.service.js"
 import { LongTxt } from "../cmps/LongTxt.jsx"
+import { BookReviews } from "../cmps/BookReviews.jsx"
 
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
@@ -25,6 +26,10 @@ export function BookDetails({ bookId, onBack }) {
         navigate('/book')
     }
 
+    function onAddReview() {
+
+    }
+
     if (!book) return <div>Loading Details...</div>
     const { title, subtitle, description, pageCount, authors, thumbnail, publishedDate, listPrice } = book
     const { amount, isOnSale } = listPrice
@@ -46,6 +51,10 @@ export function BookDetails({ bookId, onBack }) {
             <h5 className={amount > 150 ? 'expensive' : 'cheap'}>$ {amount}</h5>
             {pageCount > 200 && pageCount <= 500 && <h3>Descent Reading</h3>}
             <img src={thumbnail} alt="Book Image" />
+            <button className="btn add-review"><Link to={`/book/addreview/${book.id}`}>Add Review</Link></button>
+            <h2>Reviwes:</h2>
+            <BookReviews
+                book={book} />
             <button className="btn-back" onClick={onBack}>Back</button>
         </section>
     )

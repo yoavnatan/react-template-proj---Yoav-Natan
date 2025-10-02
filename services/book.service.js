@@ -14,10 +14,13 @@ export const bookService = {
     getNextbookId,
     getFilterBy,
     setFilterBy,
-    getDefaultFilter
+    getDefaultFilter,
+    addReview,
+    removeReview
 }
 
 function query(filterBy = {}) {
+
     return storageService.query(book_KEY)
         .then(books => {
             if (filterBy.title) {
@@ -108,7 +111,8 @@ function _createBooks() {
                     currencyCode: "EUR",
                     // isOnSale: Math.random() > 0.7
                     isOnSale: true
-                }
+                },
+                reviews: []
             }
             books.push(book)
         }
@@ -122,4 +126,25 @@ function _createbook(vendor, maxSpeed = 250) {
     const book = getEmptybook(vendor, maxSpeed)
     book.id = utilService.makeId()
     return book
+}
+
+function addReview(bookId, review) {
+
+    return get(bookId)
+        .then(book => {
+            console.log(book)
+            book.reviews.push(review)
+            return book
+        })
+        .then(save)
+}
+
+function removeReview(bookId, reviewToRemove) {
+    return get(bookId)
+        .then(book => {
+            book.reviews = book.reviews.filter(review => review.id !== reviewToRemove)
+            return book
+        })
+        .then(save)
+        .then(book => book.reviews)
 }
