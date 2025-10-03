@@ -12,6 +12,7 @@ import { BookEdit } from './pages/BookEdit.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { NotFound } from './cmps/NotFound.jsx'
 import { AddReview } from './pages/AddReview.jsx'
+import { BookAdd } from './pages/BookAdd.jsx'
 
 export function App() {
     return (
@@ -28,6 +29,7 @@ export function App() {
                         <Route path="/book/edit" element={<BookEdit />} />
                         <Route path="/book/edit/:bookId" element={<BookEdit />} />
                         <Route path="/book/addreview/:bookId" element={<AddReview />} />
+                        <Route path="/book/add" element={<BookAdd />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
