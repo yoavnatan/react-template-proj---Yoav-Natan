@@ -55,6 +55,8 @@ export function BookDetails({ bookId, onBack }) {
             <h2>Reviwes:</h2>
             <BookReviews
                 book={book} />
+            <button className="btn prev"><Link to={`/book/${book.prevBookId}`}>Prev</Link></button>
+            <button className="btn next"><Link to={`/book/${book.nextBookId}`}>Next</Link></button>
             <button className="btn-back" onClick={onBack}>Back</button>
         </section>
     )
