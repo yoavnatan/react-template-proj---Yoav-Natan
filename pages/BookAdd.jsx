@@ -1,18 +1,25 @@
 import { bookService } from "../services/book.service.js"
+import { utilService } from "../services/util.service.js"
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 export function BookAdd() {
 
     const [searchVal, setSearchVal] = useState('')
     const [searchRes, setSearcRes] = useState([])
 
+    const onSubmitFormDebounce = useRef(utilService.debounce(onSubmitForm, 500))
+
+    useEffect(() => {
+        if (searchVal) onSubmitFormDebounce.current(searchVal)
+    }, [searchVal])
+
     function handleChange({ target }) {
         setSearchVal(target.value)
     }
 
-    function onSubmitForm(ev) {
-        ev.preventDefault()
+    function onSubmitForm(searchVal) {
+        // ev.preventDefault()
         bookService.searchByGoogle(searchVal)
             .then(res => setSearcRes(res))
         // const books = bookService.demoSerach()
