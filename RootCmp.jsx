@@ -13,17 +13,22 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { NotFound } from './cmps/NotFound.jsx'
 import { AddReview } from './pages/AddReview.jsx'
 import { BookAdd } from './pages/BookAdd.jsx'
+import { Goal } from './pages/AboutCmps/Goal.jsx'
+import { Team } from './pages/AboutCmps/Team.jsx'
 
 export function App() {
     return (
         <Router>
-            <section className="app">
+            <section className="app nunito-class">
                 <AppHeader />
                 <main>
                     <Routes>
                         <Route path="/" element={<Navigate to="/home" />} />
                         <Route path="/home" element={<HomePage />} />
-                        <Route path="/aboutus" element={<AboutUs />} />
+                        <Route path="/aboutus" element={<AboutUs />}>
+                            <Route path="/aboutus/team" element={<Team />} />
+                            <Route path="/aboutus/goal" element={<Goal />} />
+                        </Route>
                         <Route path="/book" element={<BookIndex />} />
                         <Route path="/book/:bookId" element={<BookDetails />} />
                         <Route path="/book/edit" element={<BookEdit />} />
@@ -32,9 +37,9 @@ export function App() {
                         <Route path="/book/add" element={<BookAdd />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
-                </main>
+                </main >
                 <UserMsg />
-            </section>
-        </Router>
+            </section >
+        </Router >
     )
 }

@@ -2,7 +2,7 @@ const { Link, NavLink } = ReactRouterDOM
 
 export function AppHeader() {
     return (
-        <header className="app-header container">
+        <header className="app-header container nunito-class">
             <section>
                 <h1>Book Shop</h1>
                 <nav className="app-nav">

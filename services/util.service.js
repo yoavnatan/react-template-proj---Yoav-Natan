@@ -7,7 +7,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
-    debounce
+    debounce,
+    animateCSS
 }
 
 function makeId(length = 6) {
@@ -69,4 +70,22 @@ function debounce(callback, wait) {
             callback(...args);
         }, wait);
     };
+}
+
+function animateCSS(el, animation = 'bounce', options = {}) {
+    const { isRemoveClass = true } = options
+    const prefix = 'animate__'
+    return new Promise((resolve, reject) => {
+        const animationName = `${prefix}${animation}`
+        el.classList.add(`${prefix}animated`, animationName)
+
+        function handleAnimationEnd(event) {
+            console.log('yes')
+            event.stopPropagation()
+            if (isRemoveClass) el.classList.remove(`${prefix}animated`, animationName)
+            resolve('Animation ended')
+        }
+
+        el.addEventListener('animationend', handleAnimationEnd, { once: true })
+    })
 }
