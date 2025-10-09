@@ -89,3 +89,14 @@ function animateCSS(el, animation = 'bounce', options = {}) {
         el.addEventListener('animationend', handleAnimationEnd, { once: true })
     })
 }
+
+export function cleanObject(obj) {
+    const newObj = {}
+    for (const key in obj) {
+        const value = obj[key]
+        if (value) {
+            newObj[key] = value
+        }
+    }
+    return newObj
+}

@@ -23,7 +23,7 @@ export function BookList({ books, onRemoveBook }) {
                     <BookPreview book={book} />
                     <section>
                         <button className="animate__animated animate__bounce " onClick={ev => onRemoveBook(book.id, ev)}>Remove</button>
-                        <button class="btn-details"><Link to={`/book/${book.id}`}>Details</Link></button>
+                        <button className="btn-details"><Link to={`/book/${book.id}`}>Details</Link></button>
                         <button ><Link to={`/book/edit/${book.id}`}>Edit</Link></button>
                     </section>
                 </li>

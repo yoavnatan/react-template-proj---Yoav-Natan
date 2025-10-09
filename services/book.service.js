@@ -20,7 +20,9 @@ export const bookService = {
     searchByGoogle,
     demoSerach,
     addGoogleBook,
-    googleQuery
+    googleQuery,
+    getFilterFromSearchParams,
+    getEmptyReview
 }
 
 function query(filterBy = {}) {
@@ -167,6 +169,25 @@ function _setNextPrevBookId(book) {
     })
 }
 
+function getFilterFromSearchParams(searchParams) {
+    const txt = searchParams.get('title') || ''
+    const minSpeed = searchParams.get('minPrice') || ''
+    const minPageCount = searchParams.get('minPageCount') || 100
+    return {
+        txt,
+        minSpeed,
+        minPageCount
+    }
+}
+
+function getEmptyReview() {
+    return {
+        id: utilService.makeId(),
+        name: '',
+        rating: '',
+        readAt: '',
+    }
+}
 //GOOGLE BOOKS SERVICE//
 
 const GOOGLE_KEY = 'googleDB'
@@ -251,9 +272,6 @@ function convertApiData(item) {
 
 }
 
-function dateToString(date) {
-    return date.substring(0, 4)
-}
 
 function googleQuery(items) {
     // const items = [
